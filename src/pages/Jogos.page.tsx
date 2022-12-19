@@ -21,7 +21,7 @@ const PageContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  min-height: 100vh;
+  min-height: 80vh;
   background-color: #eee;
   padding-top: 120px;
   padding-bottom: 80px;
@@ -33,7 +33,7 @@ const ContentContainer = styled.div`
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  margin: auto;
+  margin: 0 auto;
   width: 80%;
 `;
 
@@ -58,7 +58,7 @@ const BuscarButton = styled.button`
 `;
 
 const AdicionarJogoContainer = styled.div`
-  margin: auto;
+  margin: 0 auto;
 `;
 const AdicionarJogoBotao = styled.button`
   margin-bottom: 20px;
@@ -340,7 +340,9 @@ function JogosPage() {
           if (index >= limite) return null;
           return (
             <JogoCard key={jogo._id} onClick={() => handleJogoCard(jogo)}>
-              {jogo.imagem && <JogoCardImagem src={jogo.imagem} />}
+              {jogo.imagem && (
+                <JogoCardImagem src={`data:image/jpeg;base64,${jogo.imagem}`} />
+              )}
               <JogoCardTituloContainer>{jogo.nome}</JogoCardTituloContainer>
               <JogoCardGenero>{jogo.genero.nome}</JogoCardGenero>
               <JogoCardDesenvolvedor>

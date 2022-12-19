@@ -82,7 +82,7 @@ function LoginPage() {
 
     if (resposta.status === 200) {
       localStorage.setItem("JWT_TOKEN", resposta.data.access_token);
-      return navigation(-1);
+      return navigation("/");
     }
 
     toast("Usuário ou senha incorretos", {

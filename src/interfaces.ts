@@ -40,6 +40,7 @@ export interface ObterJogosInterface extends JogoModel {
   console: ConsoleModel;
   desenvolvedor: DesenvolvedorModel;
   genero: GeneroModel;
+  avaliacoes: AvaliacaoModel[];
   notaMedia: number | null;
 }
 
