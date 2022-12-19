@@ -52,6 +52,7 @@ function NavbarLayout() {
   function handleLogoutClick() {
     localStorage.removeItem("JWT_TOKEN");
     setLogado(false);
+    navigate("/consoles");
   }
 
   return (
