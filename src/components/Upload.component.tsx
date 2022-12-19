@@ -21,17 +21,23 @@ const UploadComponent = (props: UploadComponentProps) => {
 
   const photoUpload = (e: any) => {
     e.preventDefault();
+    let alterada = false;
     const reader = new FileReader();
     const file = e.target.files[0];
-    if (reader !== undefined && file !== undefined) {
-      reader.onloadend = (readerEvent: any) => {
-        const binaryString = readerEvent.target.result;
-        reader.readAsBinaryString(file);
-        setImagePreview(reader.result);
-        onFileSubmit(btoa(binaryString));
-      };
-      reader.readAsDataURL(file);
+    if (!reader || !file) {
+      return;
     }
+    reader.onloadend = function () {
+      if (alterada) {
+        return;
+      }
+      alterada = true;
+      const binaryString = reader.result as string;
+      reader.readAsBinaryString(file);
+      setImagePreview(reader.result);
+      onFileSubmit(binaryString);
+    };
+    reader.readAsDataURL(file);
   };
 
   return (

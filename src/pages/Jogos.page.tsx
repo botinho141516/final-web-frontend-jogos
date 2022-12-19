@@ -226,6 +226,14 @@ function JogosPage() {
     return !!localStorage.getItem("JWT_TOKEN");
   }
 
+  function ordenaPorNota(array: ObterJogosInterface[]): ObterJogosInterface[] {
+    return [...array].sort((a, b) => {
+      if (!a.notaMedia) return -1;
+      if (!b.notaMedia) return 1;
+      return b.notaMedia - a.notaMedia;
+    });
+  }
+
   function handleBuscar() {
     const queryParams = new URLSearchParams();
     queryParams.append("consoleId", selectedConsole);
@@ -286,10 +294,10 @@ function JogosPage() {
           </AdicionarJogoContainer>
         )}
         <ContentContainer>
-          {jogosFiltrados.map((jogo, index) => {
+          {ordenaPorNota(jogosFiltrados).map((jogo, index) => {
             if (index >= limite) return null;
             return (
-              <JogoCard onClick={() => handleJogoCard(jogo)}>
+              <JogoCard key={jogo._id} onClick={() => handleJogoCard(jogo)}>
                 {jogo.imagem && <JogoCardImagem src={jogo.imagem} />}
                 <JogoCardTituloContainer>{jogo.nome}</JogoCardTituloContainer>
                 <JogoCardGenero>{jogo.genero.nome}</JogoCardGenero>
@@ -336,13 +344,11 @@ function JogosPage() {
         </AdicionarJogoContainer>
       )}
       <ContentContainer>
-        {jogosFiltrados.map((jogo, index) => {
+        {ordenaPorNota(jogosFiltrados).map((jogo, index) => {
           if (index >= limite) return null;
           return (
             <JogoCard key={jogo._id} onClick={() => handleJogoCard(jogo)}>
-              {jogo.imagem && (
-                <JogoCardImagem src={`data:image/jpeg;base64,${jogo.imagem}`} />
-              )}
+              {jogo.imagem && <JogoCardImagem src={jogo.imagem} />}
               <JogoCardTituloContainer>{jogo.nome}</JogoCardTituloContainer>
               <JogoCardGenero>{jogo.genero.nome}</JogoCardGenero>
               <JogoCardDesenvolvedor>

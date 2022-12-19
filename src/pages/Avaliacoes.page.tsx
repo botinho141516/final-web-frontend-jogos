@@ -208,7 +208,7 @@ function AvaliacoesPage() {
     <PageContainer>
       {jogoSelecionado?.imagem && (
         <ImagemContainer>
-          <Imagem src={`data:image/jpeg;base64,${jogoSelecionado.imagem}`} />
+          <Imagem src={jogoSelecionado.imagem} />
         </ImagemContainer>
       )}
       <TituloContainer>{jogoSelecionado?.nome}</TituloContainer>
@@ -218,7 +218,7 @@ function AvaliacoesPage() {
         <AvaliacoesContainer>
           {[...jogoSelecionado.avaliacoes, ...avaliacoesAdicionadas].map(
             (avaliacao) => (
-              <AvaliacaoIndividualContainer>
+              <AvaliacaoIndividualContainer key={avaliacao._id}>
                 <AvaliacaoIndividualNota>
                   Nota: {avaliacao.nota}
                 </AvaliacaoIndividualNota>

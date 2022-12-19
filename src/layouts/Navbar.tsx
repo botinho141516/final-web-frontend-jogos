@@ -57,7 +57,7 @@ function NavbarLayout() {
 
   return (
     <NavbarContainer>
-      <NavbarLogo>IGN - Game review</NavbarLogo>
+      <NavbarLogo>Web - Game review</NavbarLogo>
       <LoginLogoutContainer>
         {!logado && (
           <LoginText onClick={handleLoginClick}>Login/Registrar</LoginText>
