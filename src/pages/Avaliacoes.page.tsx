@@ -160,6 +160,7 @@ function AvaliacoesPage() {
   >([]);
 
   useEffect(() => {
+    console.log(jogoSelecionado);
     if (!jogoSelecionado) {
       return navigate("/jogos");
     }
